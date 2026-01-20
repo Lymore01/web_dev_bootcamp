@@ -1,0 +1,27 @@
+h1 {
+    color: green;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h2 {
+    color: rgb(255, 165, 0); 
+    font-size: 32px;
+}
+
+p {
+    color: #FFFFFF; 
+    background-color: #000000;
+    
+    line-height: 1.5;
+    text-align: left;
+    font-family: Georgia, serif;
+}
+
+button {
+    color: white;
+    background-color: blueviolet;
+    font-size: 18px;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
