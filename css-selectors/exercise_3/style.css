@@ -1,0 +1,11 @@
+/* Apply styles to all links inside header */
+header a{
+   font-size: 30px;
+   color: teal;
+}
+
+/* Apply styles to all links inside the dislikes paragraph */
+#dislikes a{
+    color: red;
+    font-weight: bold;
+}

@@ -1,0 +1,113 @@
+/* universal */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* element selector: body */
+body {
+  font-family: "Segoe UI", sans-serif;
+  line-height: 1.6;
+  padding: 20px;
+  background-color: #f4f4f4;
+}
+
+/* ID selector */
+#main-title {
+  color: #2c3e50;
+  text-transform: uppercase;
+}
+
+/* Class selector */
+.subtitle {
+  color: #7f8c8d;
+  font-style: italic;
+}
+
+/* Descendant Combinators*/
+/* 
+ancestor descendant {
+    property: value;
+}
+
+*/
+
+/* Any 'p' inside 'section' regardless of nesting depth */
+section p {
+  margin-bottom: 10px;
+}
+
+/* Child Combinator - This selects direct children only */
+/* 
+    parent > child {
+    property: value;
+}
+*/
+
+/* Paragraph that comes IMMEDIATELY after an H2 */
+h2 + p {
+  color: #e67e22;
+  font-weight: bold;
+}
+
+/* General Sibling Combinator - Applies styles to all siblings that come after an H2 */
+h2 ~ p {
+  font-size: 14px;
+  color: #34495e;
+}
+
+/* Attribute Selector */
+input[type="email"] {
+  width: 100%;
+  padding: 8px;
+  border: 2px solid #ddd;
+}
+
+/* Pseudo Classes & Pseudo Elements */
+button:hover {
+  background-color: #34495e;
+  color: white;
+  cursor: pointer;
+}
+
+/* Applies styles to even list items */
+li:nth-of-type(even) {
+  background-color: #ecf0f1;
+}
+
+/* First letter of each h2 in .list-section */
+.list-section h2::first-letter {
+  font-size: 200%;
+  color: #2980b9;
+}
+
+/* Class vs ID: The ID wins regardless of order */
+.subtitle {
+  color: blue;
+}
+#main-title {
+  color: #2c3e50;
+}
+
+
+/* 
+selector {
+  property: value !important;
+}
+
+used to give highest priority to a style rule, overriding all other rules.
+*/
+
+/* Use this only as a last resort */
+footer p {
+  color: #999 !important;
+}
+
+/* CSS Inheritance */
+/* 'color' inherits from body, but 'border' does not */
+section {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin-top: 20px;
+}
