@@ -1,0 +1,43 @@
+.box-container {
+    width: 80%;
+    max-width: 600px;
+    height: auto;
+    margin: 2rem auto; /* Margin: Center the box */
+    background-color: #f0f0f0;
+}
+
+.demo-box {
+    border: 5px solid #FF8C00;
+    border-radius: 15px; /* Rounded corners */
+    
+    padding: 20px;
+}
+
+span {
+    display: inline-block; /* Allows width/height on an inline element */
+    background: #ccc;
+    padding: 5px;
+}
+
+/* CSS Units: ems vs rems */
+html {
+    font-size: 16px; /* Base size for rems */
+}
+
+.unit-test {
+    font-size: 20px; /* Parent size for ems */
+    padding: 1rem;   /* Padding remains 16px regardless of parent font */
+}
+
+.rem-text {
+    font-size: 1rem; /* Exactly 16px */
+}
+
+.em-text {
+    font-size: 1em;  /* Inherits 20px from .unit-test */
+}
+
+article {
+    margin-top: 50px;
+    border-top: 2px dashed #333;
+}
