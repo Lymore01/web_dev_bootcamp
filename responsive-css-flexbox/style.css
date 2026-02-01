@@ -1,0 +1,47 @@
+.navbar {
+  display: flex;
+  /* space items out evenly in the MAIN axis (horizontal) */
+  justify-content: space-between;
+  /* center them vertically in the CROSS axis (vertical) */
+  align-items: center;
+  padding: 1rem 2rem;
+  background: magenta;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+/* Flex Basis & Grow */
+.flex-container {
+  display: flex;
+  flex-wrap: wrap; /* allow wrapping on small screens */
+  gap: 10px;
+  padding: 20px;
+}
+
+.box {
+  /* grow: 1 (Take up available space) 
+       shrink: 1 (Shrink if container gets too small)
+       basis: 250px (Start at 250px width before growing/shrinking) */
+  flex: 1 1 200px; /* shorthand: Grow, Shrink, Basis */
+  height: 100px;
+  background: #ff8c00;
+
+  /* Align-Self: This specific card can break the rules! 
+       It overrides the parent's align-items. */
+    align-self: stretch;
+}
+
+/* media Queries */
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column; /* Stack nav vertically on mobile */
+  }
+
+  .nav-links {
+    margin: 15px 0;
+  }
+}
