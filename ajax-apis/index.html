@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX & APIs Lab</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 40px; line-height: 1.6; }
+        .controls { margin-bottom: 20px; border-bottom: 2px solid #eee; padding-bottom: 20px; }
+        button { padding: 10px 15px; cursor: pointer; background-color: #FF8C00; color: white; border: none; border-radius: 4px; }
+        #imageContainer img { margin: 10px; border: 3px solid #333; height: 200px; }
+    </style>
+</head>
+<body>
+
+    <h1>API & AJAX Explorer</h1>
+
+    <div class="controls">
+        <h3>TV Show Search</h3>
+        <form id="searchForm">
+            <input type="text" placeholder="Show Name" name="query">
+            <button>Search Shows</button>
+        </form>
+    </div>
+
+    <div id="imageContainer">
+        </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
