@@ -1,11 +1,8 @@
-import express from "express";
-import Product from "./models/product";
 import mongoose from "mongoose";
+import Product from "./models/product";
 
-const app = express();
-const PORT = 3000;
-
-const MONGO_URI = "mongodb://127.0.0.1:27017/udemy-express"; 
+// Connect to MongoDB
+const MONGO_URI = "mongodb://127.0.0.1:27017/test-db"; 
 mongoose
   .connect(MONGO_URI, {
     useNewUrlParser: true,
@@ -18,75 +15,40 @@ mongoose
     console.error("Error connecting to MongoDB:", error);
   });
 
-// Middleware to parse JSON bodies
-app.use(express.json());
-
-app.get("/products", async (req, res) => {
+async function runMongooseOperations() {
   try {
-    const products = await Product.find(); // Fetch all products from the database
-    res.json({
-      products,
+    // Create a new product
+    const newProduct = new Product({
+      name: "Sample Product",
+      price: 100,
+      description: "This is a sample product",
+      category: "electronics",
     });
-  } catch (error) {
-    res.status(500).json({ error: "Failed to fetch products" });
-  }
-});
+    await newProduct.save();
+    console.log("Product created:", newProduct);
 
-// Route to add a new product
-app.post("/products", async (req, res) => {
-  try {
-    const { name, price, category } = req.body; 
-    const newProduct = new Product({ name, price, category }); // Create a new product instance
-    await newProduct.save(); // Save the product to the database
-    res.status(201).json({ message: "Product created successfully", product: newProduct });
-  } catch (error) {
-    res.status(500).json({ error: "Failed to create product" });
-  }
-});
+    // Fetch all products
+    const products = await Product.find();
+    console.log("All products:", products);
 
-// Route to fetch a product by ID
-app.get("/products/:id", async (req, res) => {
-  try {
-    const { id } = req.params; // Extract product ID from the request parameters
-    const product = await Product.findById(id); // Find the product by ID
-    if (!product) {
-      return res.status(404).json({ error: "Product not found" });
-    }
-    res.json({ product });
-  } catch (error) {
-    res.status(500).json({ error: "Failed to fetch product" });
-  }
-});
+    // Find a product by ID
+    const product = await Product.findById(newProduct._id);
+    console.log("Product found by ID:", product);
 
-// Route to update a product by ID
-app.put("/products/:id", async (req, res) => {
-  try {
-    const { id } = req.params; 
-    const updates = req.body; // Extract updates from the request body
-    const updatedProduct = await Product.findByIdAndUpdate(id, updates, { new: true });
-    if (!updatedProduct) {
-      return res.status(404).json({ error: "Product not found" });
-    }
-    res.json({ message: "Product updated successfully", product: updatedProduct });
-  } catch (error) {
-    res.status(500).json({ error: "Failed to update product" });
-  }
-});
+    // Update a product
+    const updatedProduct = await Product.findByIdAndUpdate(
+      newProduct._id,
+      { price: 120 },
+      { new: true }
+    );
+    console.log("Updated product:", updatedProduct);
 
-// Route to delete a product by ID
-app.delete("/products/:id", async (req, res) => {
-  try {
-    const { id } = req.params; 
-    const deletedProduct = await Product.findByIdAndDelete(id);
-    if (!deletedProduct) {
-      return res.status(404).json({ error: "Product not found" });
-    }
-    res.json({ message: "Product deleted successfully" });
+    // Delete a product
+    const deletedProduct = await Product.findByIdAndDelete(newProduct._id);
+    console.log("Deleted product:", deletedProduct);
   } catch (error) {
-    res.status(500).json({ error: "Failed to delete product" });
+    console.error("Error during Mongoose operations:", error);
   }
-});
+}
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+runMongooseOperations();
