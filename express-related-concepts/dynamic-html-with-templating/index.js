@@ -29,6 +29,7 @@ app.get('/r/:subreddit', (req, res) => {
     res.render('subreddit', { ...data });
 });
 
+
 app.listen(3000, () => {
     console.log("LISTENING ON PORT 3000");
 });
